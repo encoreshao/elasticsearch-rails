@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_022140) do
+ActiveRecord::Schema.define(version: 2020_06_27_022732) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,4 +20,50 @@ ActiveRecord::Schema.define(version: 2020_06_27_022140) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "articles_categories", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "category_id", null: false
+    t.index ["article_id"], name: "index_articles_categories_on_article_id"
+    t.index ["category_id"], name: "index_articles_categories_on_category_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "authorships", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_authorships_on_article_id"
+    t.index ["author_id"], name: "index_authorships_on_author_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.string "user"
+    t.string "user_location"
+    t.integer "stars"
+    t.boolean "pick"
+    t.integer "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
+  add_foreign_key "articles_categories", "articles"
+  add_foreign_key "articles_categories", "categories"
+  add_foreign_key "authorships", "articles"
+  add_foreign_key "authorships", "authors"
+  add_foreign_key "comments", "articles"
 end
