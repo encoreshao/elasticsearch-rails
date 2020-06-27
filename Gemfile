@@ -64,3 +64,4 @@ gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-
 gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'oj'
 gem 'pry', group: 'development'
+gem 'sidekiq'
