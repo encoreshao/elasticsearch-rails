@@ -1,4 +1,11 @@
 Rails.application.configure do
+
+  console do
+    config.console = Pry
+    Pry.config.history.file = Rails.root.join('tmp/console_history.rb').to_s
+    Pry.config.prompt = [ proc { |obj, nest_level, _| "(#{obj})> " },
+                          proc { |obj, nest_level, _| ' '*obj.to_s.size + '  '*(nest_level+1)  + '| ' } ]
+  end
   config.assets.quiet  = true
   config.assets.logger = false
   # Settings specified here will take precedence over those in config/application.rb.
