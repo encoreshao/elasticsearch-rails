@@ -17,8 +17,6 @@
   </div>
 <% end %>
 
-<hr>
-
 <table class="table table-hover table-striped table-bordered">
   <thead>
     <tr>
@@ -33,7 +31,7 @@
     <% @articles.__send__ controller.action_name == 'search' ? :each_with_hit : :each do |article, hit| %>
       <tr>
         <td><%= hit.try(:highlight).try(:title)   ? hit.highlight.title.join.html_safe : article.title %></td>
-        <td><%= hit.try(:highlight).try(:content) ? hit.highlight.content.join('&hellip;').html_safe : article.content %></td>
+        <td><%= truncate(hit.try(:highlight).try(:content) ? hit.highlight.content.join('&hellip;').html_safe : article.content) %></td>
         <td><%= article.published_on %></td>
         <td>
           <div class='float-right'>

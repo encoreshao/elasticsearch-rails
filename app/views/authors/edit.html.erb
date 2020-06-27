@@ -1,6 +1,5 @@
-<h1>Editing Author</h1>
+<%= render partial: 'breadcrumb', locals: { item: 'Editing Author' } %>
 
-<%= render 'form', author: @author %>
-
-<%= link_to 'Show', @author %> |
-<%= link_to 'Back', authors_path %>
+<div class="alert alert-light box-bordered" role="alert">
+  <%= render 'form', author: @author %>
+</div>

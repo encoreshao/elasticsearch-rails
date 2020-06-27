@@ -14,12 +14,8 @@
  *= require_self
  */
 
- body * {
+body * {
   font-family: 'Open Sans', sans-serif;
- }
-
-.table {
-  border-bottom: 1px solid #dee2e6;
 }
 
 .table td {
@@ -36,27 +32,20 @@
   border-radius: 5px;
 }
 
-nav.pagination {
-  text-align: center;
-  display: inline-block;
-}
-
-ul.pagination {
-  margin-bottom: 0;
-}
-
 .navbar-container,
 .bg-primary-3,
 #footer {
   background: linear-gradient(135deg, #0a255c 0%, #4582EC 100%);
+  width: 100%;
 }
 
-.bg-primary-3 {
-  padding: 3rem 0;
+.navbar-container {
+  z-index: 1;
 }
 
+.bg-primary-3,
 .main-container {
-  padding: 3rem 0;
+  padding: 6rem 0;
 }
 
 #footer {

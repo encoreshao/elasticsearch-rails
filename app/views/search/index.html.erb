@@ -25,8 +25,18 @@
               Sort by
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <li><%= link_to "Published On", search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(s: 'published_on')), class: 'dropdown-item' %></li>
-              <li><%= link_to "Relevancy", search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(s: nil)), class: 'dropdown-item' unless params[:q].blank?  %></li>
+              <li>
+                <%=
+                  link_to "Published On", search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(s: 'published_on')),
+                  class: 'dropdown-item'
+                %>
+              </li>
+              <li>
+                <%=
+                  link_to "Relevancy", search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(s: nil)),
+                  class: 'dropdown-item' unless params[:q].blank?
+                %>
+              </li>
             </div>
           </div>
         </div>
@@ -62,12 +72,12 @@
 
           <div class="list-group">
             <% @articles.response.response['aggregations']['categories']['categories']['buckets'].each do |c| %>
-            <%=
-              link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(c: c['key'])),
+              <%=
+                link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(c: c['key'])),
                       class: "list-group-item#{' active' if params[:c] == c['key']}" do
                         c['key'].titleize.html_safe + content_tag(:small, c['doc_count'], class: 'badge').html_safe
-              end
-            %>
+                end
+              %>
             <% end %>
           </div>
         </div>
@@ -79,12 +89,12 @@
 
           <div class="list-group">
             <% @articles.response.response['aggregations']['authors']['authors']['buckets'].each do |a| %>
-            <%=
-              link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(a: a['key'])),
-                      class: "list-group-item#{' active' if params[:a] == a['key']}" do
-                        a['key'].titleize.html_safe + content_tag(:small, a['doc_count'], class: 'badge').html_safe
-              end
-            %>
+              <%=
+                link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(a: a['key'])),
+                        class: "list-group-item#{' active' if params[:a] == a['key']}" do
+                          a['key'].titleize.html_safe + content_tag(:small, a['doc_count'], class: 'badge').html_safe
+                end
+              %>
             <% end %>
           </div>
         </div>
@@ -96,17 +106,17 @@
 
           <div class="list-group">
             <% @articles.response.response['aggregations']['published']['published']['buckets'].each do |w| %>
-            <%=
-              __start = Time.at(w['key']/1000)
-              __end   = __start.end_of_week
-              __date  = __start.to_date.to_s(:iso)
+              <%=
+                __start = Time.at(w['key']/1000)
+                __end   = __start.end_of_week
+                __date  = __start.to_date.to_s(:iso)
 
-              link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(w: __date)),
-                      class: "list-group-item#{' active' if params[:w] == __date}" do
-                        "#{__start.to_date.to_s(:short)} &mdash; #{__end.to_date.to_s(:short)}".html_safe + \
-                        content_tag(:small, w['doc_count'], class: 'badge').html_safe
-              end
-            %>
+                link_to search_path(params.permit(:q, :a, :c, :s, :w, :comments).merge(w: __date)),
+                        class: "list-group-item#{' active' if params[:w] == __date}" do
+                          "#{__start.to_date.to_s(:short)} &mdash; #{__end.to_date.to_s(:short)}".html_safe + \
+                          content_tag(:small, w['doc_count'], class: 'badge').html_safe
+                end if w['doc_count'] > 0
+              %>
             <% end %>
           </div>
         </div>
@@ -119,7 +129,7 @@
       <% @articles.each do |article|  %>
         <div class="result">
           <h3 class="title">
-            <%= link_to (article.try(:highlight).try(:title) ? article.highlight.title.join.html_safe : article.title), article_path(article) %>
+            <%= link_to (article.try(:highlight).try(:title) ? article.highlight.title.join.html_safe : article.title), article_url(article.id) %>
           </h3>
 
           <p class="body">

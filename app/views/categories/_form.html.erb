@@ -11,12 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <% [:title].each do |field| %>
+    <div class="form-group row">
+      <%= form.label field, class: "col-sm-2 col-form-label text-right" %>
+      <div class="col-sm-10">
+        <% if category.class.columns_hash[field.to_s].type == :text %>
+          <%= form.text_area :content, size: "90x10" %>
+        <% elsif category.class.columns_hash[field.to_s].type == :date %>
+          <%= form.date_select :published_on %>
+        <% else %>
+          <%= form.text_field field, class: 'col-sm-10' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="actions">
-    <%= form.submit class: 'btn btn-outline-info' %>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit class: 'btn btn-outline-info' %>
+    </div>
   </div>
 <% end %>

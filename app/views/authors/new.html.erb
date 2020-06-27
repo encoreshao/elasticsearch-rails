@@ -1,5 +1,5 @@
-<h1>New Author</h1>
+<%= render partial: 'breadcrumb', locals: { item: 'New Author' } %>
 
-<%= render 'form', author: @author %>
-
-<%= link_to 'Back', authors_path, class: 'btn btn-outline-info' %>
+<div class="alert alert-light box-bordered" role="alert">
+  <%= render 'form', author: @author %>
+</div>

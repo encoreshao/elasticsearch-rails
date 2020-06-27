@@ -2,7 +2,7 @@
 
 <h1>Authorships</h1>
 
-<table class="table table-bordered">
+<table class="table table-hover table-striped table-bordered">
   <thead>
     <tr>
       <th scope="col">Article</th>
@@ -19,7 +19,6 @@
         <td>
           <div class='float-right'>
             <%= link_to 'Show', authorship, class: 'btn btn-outline-info' %>
-            <%= link_to 'Edit', edit_authorship_path(authorship), class: 'btn btn-outline-info' %>
             <%= link_to 'Destroy', authorship, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-info' %>
           </div>
         </td>

@@ -1,6 +1,5 @@
-<h1>Editing Authorship</h1>
+<%= render partial: 'breadcrumb', locals: { item: 'Editing Authorship' } %>
 
-<%= render 'form', authorship: @authorship %>
-
-<%= link_to 'Show', @authorship, class: 'btn btn-outline-info' %> |
-<%= link_to 'Back', authorships_path, class: 'btn btn-outline-info' %>
+<div class="alert alert-light box-bordered" role="alert">
+  <%= render 'form', authorship: @authorship %>
+</div>

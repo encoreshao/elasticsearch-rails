@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="alert alert-dark">
+  <div class='pull-right'>
+    <%= link_to 'Edit', edit_comment_path(@comment) %> |
+    <%= link_to 'Back', :back %>
+  </div>
+</div>
+
+<div class="alert" role="alert">
+  <h4 class="alert-heading"><%= @comment&.article&.title %></h4>
+  <p>
+    <%= @comment.body %>
+  </p>
+  <hr>
+  <p class="mb-0">
+    <strong>Date: </strong>
+    <%= @comment.created_at %>
+    <strong>User: </strong>
+    <%= @comment.user %>
+  </p>
+</div>

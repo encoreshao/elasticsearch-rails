@@ -37,3 +37,10 @@ to a category, has many authors and comments.
 * A Rails initializer is added to customize the Elasticsearch client configuration
 * Seed script and example data from New York Times is added
 
+
+## [4] Upgrading Bootstrap to v4
+
+Adapter the Bootstrap v4 for UI
+
+* Build a new navbar and support all listings page
+- Build the new paginating
