@@ -15,7 +15,7 @@
  */
 
  body * {
-   font-size: 100% !important;
+  font-family: 'Open Sans', sans-serif;
  }
 
 .table {
@@ -45,3 +45,25 @@ ul.pagination {
   margin-bottom: 0;
 }
 
+.navbar-container,
+.bg-primary-3,
+#footer {
+  background: linear-gradient(135deg, #0a255c 0%, #4582EC 100%);
+}
+
+.bg-primary-3 {
+  padding: 3rem 0;
+}
+
+.main-container {
+  padding: 3rem 0;
+}
+
+#footer {
+  color: #f8f9fa;
+  padding: 6rem 0;
+}
+
+#footer *, #footer a, .lead a {
+  color: #fff !important;
+}

@@ -1,26 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= controller.action_name == 'search' ? 'Search results' : 'Articles' %></h1>
+<h1>
+  <%= controller.action_name == 'search' ? 'Search results' : 'Articles' %>
 
-  <hr>
+  <small class='float-right'>
+    <%= link_to 'New Article', new_article_path, class: 'btn btn-outline-info' %>
+    <%= link_to 'All Articles', articles_path, class: 'btn btn-outline-info' if params[:q] %>
+  </small>
+</h1>
 
-  <%= form_tag search_articles_path, method: 'get' do %>
-    <div class="input-group">
-  <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...' %>
-</div>
+<hr>
 
-  <% end %>
+<%= form_tag search_articles_path, method: 'get' do %>
+  <div class="input-group">
+    <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search...' %>
+  </div>
+<% end %>
 
-  <hr>
+<hr>
 
-
-<table class="table table-hover">
+<table class="table table-hover table-striped table-bordered">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Published on</th>
-      <th colspan="3"></th>
+      <th scope='col'>Title</th>
+      <th scope='col'>Content</th>
+      <th scope='col'>Published on</th>
+      <th scope='col'></th>
     </tr>
   </thead>
 
@@ -30,24 +35,20 @@
         <td><%= hit.try(:highlight).try(:title)   ? hit.highlight.title.join.html_safe : article.title %></td>
         <td><%= hit.try(:highlight).try(:content) ? hit.highlight.content.join('&hellip;').html_safe : article.content %></td>
         <td><%= article.published_on %></td>
-        <td style="width: 50px"><%= link_to 'Show', article , class: 'btn btn-outline-primary btn-sm'%></td>
-        <td style="width: 50px"><%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-outline-primary btn-sm'%></td>
-        <td style="width: 50px"><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-outline-primary btn-sm'%></td>
+        <td>
+          <div class='float-right'>
+            <%= link_to 'Show', article , class: 'btn btn-outline-primary'%>
+            <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-outline-primary'%>
+            <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-outline-primary'%>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<div class="text-center">
-  <%= paginate @articles %>
-</div>
-
-
 <hr>
 
-<p style="text-align: center; margin-bottom: 21px">
-  <%= link_to 'New Article', new_article_path, class: 'btn btn-primary btn-xs', style: 'color: #fff' %>  
-  <%= link_to 'All Articles', articles_path, class: 'btn btn-primary btn-xs', style: 'color: #fff' if params[:q] %>
-
-
-</p>
+<nav aria-label="pagination">
+  <%= paginate @articles %>
+</nav>

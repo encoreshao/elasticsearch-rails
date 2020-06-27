@@ -4,7 +4,7 @@ class AuthorshipsController < ApplicationController
   # GET /authorships
   # GET /authorships.json
   def index
-    @authorships = Authorship.all
+    @authorships = Authorship.preload(:author, :article).page(params[:page])
   end
 
   # GET /authorships/1

@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @author.first_name %>
-</p>
+<blockquote class="blockquote text-left">
+  <p class="mb-0">
+    <strong>First Name: </strong><%= @author.first_name %>
+  </p>
+  <p class="mb-0">
+    <strong>Last Name: </strong><%= @author.last_name %>
+  </p>
+  <footer class="blockquote-footer">Last updated at <cite title="Category"><%= @author.updated_at.to_s %></cite></footer>
+</blockquote>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @author.last_name %>
-</p>
-
-<%= link_to 'Edit', edit_author_path(@author) %> |
-<%= link_to 'Back', authors_path %>
+<%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-outline-info' %> |
+<%= link_to 'Back', authors_path, class: 'btn btn-outline-info' %>
