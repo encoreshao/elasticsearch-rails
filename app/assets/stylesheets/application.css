@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+ body * {
+   font-size: 100% !important;
+ }
+
+.table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table td {
+  vertical-align: middle !important;
+}
+
+.label-highlight {
+  font-size: 100% !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  color: #333 !important;
+  background: #fff401 !important;
+  padding: 0.25em 0.5em
+  border-radius: 5px;
+}
+
+nav.pagination {
+  text-align: center;
+  display: inline-block;
+}
+
+ul.pagination {
+  margin-bottom: 0;
+}
+
